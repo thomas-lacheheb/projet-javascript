@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projet JS</title>
+</head>
+<body>
+    <h1>Générateur de mot de passe</h1>
+
+    <button id="GenererMDP">Générer un mot de passe</button>
+    <label id="afficher-longueur-mdp">Longueur(10)</label>
+    <input type="range" min="4" max="20" step="1" value="10" id="longueur-mdp">
+    <!-- <input style="width: 50px;" type="text" value="10" maxlength="2" id="afficher-longueur-mdp" oninput="document.getElementById('longueur-mdp').value=this.value" disabled> -->
+    <br><br>
+
+    <label>Votre mot de passe généré : </label>
+    <input type="text" id="password">
+
+    <script>
+        function GeneratePWD() {
+            nouveauMdp = '';
+            var allChar = 'abcdefghijknopqrstuvwxyzACDEFGHJKLMNPQRSTUVWXYZ12345679!@#$+-*&_';
+            var longueurMdp = parseInt(document.getElementById('longueur-mdp').value);
+
+            for (let i = 0; i < longueurMdp; i++) {
+                nouveauMdp += allChar[Math.floor(Math.random() * allChar.length)];
+            }
+
+            document.getElementById('password').value = nouveauMdp;
+        }
+
+        document.getElementById("GenererMDP").addEventListener('click', function() {
+            GeneratePWD();
+        });
+
+        document.getElementById("longueur-mdp").addEventListener('change', function(e){
+            document.getElementById("afficher-longueur-mdp").innerHTML = "Longueur(" + e.target.value + ")";
+        });
+    </script>
+</body>
+</html>
