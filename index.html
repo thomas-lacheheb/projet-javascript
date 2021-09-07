@@ -5,8 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projet JS</title>
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
+    <!-- Exercice 1 -->
     <h1>Générateur de mot de passe</h1>
 
     <button id="GenererMDP">Générer un mot de passe</button>
@@ -18,17 +20,30 @@
     <label>Votre mot de passe généré : </label>
     <input type="text" id="password">
 
+    <!-- Exercice 2 -->
     <h1>Création d'un convertisseur Celsius Fahrenheit</h1>
 
     <input id="CelsiusInput" placeholder="Celsius">
     <button id="Convertir">Convert</button>
     <input id="FahrenheitInput" placeholder="Fahrenheit">
 
+    <!-- Exercice 3 -->
     <h1>Générateur de citation</h1>
+
+    <button id="GenererCitation">Générer une citation</button>
+
+    <div id="myModal" class="modal">
+    <!-- Contenu de la modal -->
+        <div class="modal-content">
+            <span class="fermer">&times;</span>
+            <p id="citation"></p>
+            <p id="auteur"></p>
+        </div>
+    </div>
 
     <script>
         // Exercice 1
-        function GeneratePWD() {
+        document.getElementById("GenererMDP").addEventListener('click', function() {
             nouveauMdp = '';
             // Tout les caractères qui pourront former un mot de passe
             var allChar = 'abcdefghijknopqrstuvwxyzACDEFGHJKLMNPQRSTUVWXYZ12345679!@#$+-*&_';
@@ -39,10 +54,14 @@
             }
 
             document.getElementById('password').value = nouveauMdp;
-        }
+        });
+
+        document.getElementById("longueur-mdp").addEventListener('change', function(e){
+            document.getElementById("afficher-longueur-mdp").innerHTML = "Longueur(" + e.target.value + ")";
+        });
 
         // Exercice 2
-        function ConvertTemperature() {
+        document.getElementById("Convertir").onclick = function() {
             let Celsius = document.getElementById('CelsiusInput').value;
             let Fahrenheit = document.getElementById('FahrenheitInput').value;
             if(Celsius.trim() != '' && Fahrenheit.trim() != '') {
@@ -56,21 +75,34 @@
             if(Celsius.trim() == '' && Fahrenheit.trim() != '') {
                 document.getElementById('CelsiusInput').value = (parseInt(Fahrenheit.trim()) - 32) * 5/9;
             }
+        };
+
+        // Exercice 3
+        var modal = document.getElementById("myModal");
+        var btn = document.getElementById("GenererCitation");
+        var span = document.getElementsByClassName("fermer")[0];
+
+        // Lecture d'un fichier JSON contenant les citations - Pas trouvé d'API
+        fetch('./ws/citations.json').then(response => response.json()).then(data => AllCitations = data);
+
+        btn.onclick = function() {
+            modal.style.display = "block";
+            let nbAleatoire = Math.floor(Math.random() * (AllCitations.length - 0) + 0);
+            document.getElementById('citation').textContent = AllCitations[nbAleatoire].citation;
+            document.getElementById('auteur').textContent = AllCitations[nbAleatoire].nom;
         }
 
-        // Exercice 1
-        document.getElementById("GenererMDP").addEventListener('click', function() {
-            GeneratePWD();
-        });
+        // Clic sur la croix (x), on ferme la modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
 
-        document.getElementById("longueur-mdp").addEventListener('change', function(e){
-            document.getElementById("afficher-longueur-mdp").innerHTML = "Longueur(" + e.target.value + ")";
-        });
-
-        // Exercice 2
-        document.getElementById("Convertir").addEventListener('click', function() {
-            ConvertTemperature();
-        });
+        // Clic en dehors de la modal, on ferme la modal
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
     </script>
 </body>
 </html>
