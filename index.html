@@ -18,9 +18,19 @@
     <label>Votre mot de passe généré : </label>
     <input type="text" id="password">
 
+    <h1>Création d'un convertisseur Celsius Fahrenheit</h1>
+
+    <input id="CelsiusInput" placeholder="Celsius">
+    <button id="Convertir">Convert</button>
+    <input id="FahrenheitInput" placeholder="Fahrenheit">
+
+    <h1>Générateur de citation</h1>
+
     <script>
+        // Exercice 1
         function GeneratePWD() {
             nouveauMdp = '';
+            // Tout les caractères qui pourront former un mot de passe
             var allChar = 'abcdefghijknopqrstuvwxyzACDEFGHJKLMNPQRSTUVWXYZ12345679!@#$+-*&_';
             var longueurMdp = parseInt(document.getElementById('longueur-mdp').value);
 
@@ -31,12 +41,35 @@
             document.getElementById('password').value = nouveauMdp;
         }
 
+        // Exercice 2
+        function ConvertTemperature() {
+            let Celsius = document.getElementById('CelsiusInput').value;
+            let Fahrenheit = document.getElementById('FahrenheitInput').value;
+            if(Celsius.trim() != '' && Fahrenheit.trim() != '') {
+                alert("Veuillez saisir une seule température dans un des 2 champs");
+            }
+            // Celsius à convertir en Fahrenheit
+            if(Celsius.trim() != '' && Fahrenheit.trim() == '') {
+                document.getElementById('FahrenheitInput').value = (parseInt(Celsius.trim()) * 9/5) + 32;
+            }
+            // Inversement
+            if(Celsius.trim() == '' && Fahrenheit.trim() != '') {
+                document.getElementById('CelsiusInput').value = (parseInt(Fahrenheit.trim()) - 32) * 5/9;
+            }
+        }
+
+        // Exercice 1
         document.getElementById("GenererMDP").addEventListener('click', function() {
             GeneratePWD();
         });
 
         document.getElementById("longueur-mdp").addEventListener('change', function(e){
             document.getElementById("afficher-longueur-mdp").innerHTML = "Longueur(" + e.target.value + ")";
+        });
+
+        // Exercice 2
+        document.getElementById("Convertir").addEventListener('click', function() {
+            ConvertTemperature();
         });
     </script>
 </body>
