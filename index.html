@@ -7,7 +7,7 @@
     <title>Projet JS</title>
     <link rel="stylesheet" href="./css/style.css">
 </head>
-<body>
+<body class="Clair">
     <!-- Exercice 1 -->
     <h1>Générateur de mot de passe</h1>
 
@@ -40,6 +40,15 @@
             <p id="auteur"></p>
         </div>
     </div>
+
+    <!-- Exercice 4 -->
+    <h1>Dark Mode</h1>
+
+    <input type="radio" id="clear" name="darkMode" value="Clair" onclick="changeTheme(this);" checked>
+    <label for="dewey">Clair</label>
+
+    <input type="radio" id="dark" name="darkMode" value="Sombre" onclick="changeTheme(this);">
+    <label for="huey">Sombre</label>
 
     <script>
         // Exercice 1
@@ -101,6 +110,15 @@
         window.onclick = function(event) {
             if (event.target == modal) {
                 modal.style.display = "none";
+            }
+        }
+
+        // Exercice 4
+        function changeTheme(myRadio) {
+            if(myRadio.value == "Clair"){
+                document.body.className = "Clair";
+            } else {
+                document.body.className = "Sombre"
             }
         }
     </script>

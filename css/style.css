@@ -32,3 +32,13 @@
     text-decoration: none;
     cursor: pointer;
 }
+
+.Clair {
+    color: black;
+    background-color: white;
+}
+
+.Sombre {
+    color: white;
+    background-color: black;
+}
