@@ -6,10 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projet JS</title>
     <link rel="stylesheet" href="./css/style.css">
+    <!-- Font awesome icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body class="Clair">
     <!-- Exercice 1 -->
-    <h1>Générateur de mot de passe</h1>
+    <h1 id="exe1">Générateur de mot de passe</h1>
 
     <button id="GenererMDP">Générer un mot de passe</button>
     <label id="afficher-longueur-mdp">Longueur(10)</label>
@@ -21,14 +23,14 @@
     <input type="text" id="password">
 
     <!-- Exercice 2 -->
-    <h1>Création d'un convertisseur Celsius Fahrenheit</h1>
+    <h1 id="exe2">Création d'un convertisseur Celsius Fahrenheit</h1>
 
     <input id="CelsiusInput" placeholder="Celsius">
     <button id="Convertir">Convert</button>
     <input id="FahrenheitInput" placeholder="Fahrenheit">
 
     <!-- Exercice 3 -->
-    <h1>Générateur de citation</h1>
+    <h1 id="exe3">Générateur de citation</h1>
 
     <button id="GenererCitation">Générer une citation</button>
 
@@ -42,13 +44,29 @@
     </div>
 
     <!-- Exercice 4 -->
-    <h1>Dark Mode</h1>
+    <h1 id="exe4">Dark Mode</h1>
 
     <input type="radio" id="clear" name="darkMode" value="Clair" onclick="changeTheme(this);" checked>
     <label for="dewey">Clair</label>
 
     <input type="radio" id="dark" name="darkMode" value="Sombre" onclick="changeTheme(this);">
     <label for="huey">Sombre</label>
+
+    <!-- Exercice 5 -->
+    <h1 id="exe5">Toggle Menu</h1>
+
+    <!-- Hamburger Menu -->
+    <a href="javascript:void(0);" class="icon" onclick="afficherOuCacherMenu()">
+        <i class="fa fa-bars"></i>
+    </a>
+
+    <div id="menu" style="display: none;">
+        <a href="#exe1">Exercice 1</a>
+        <a href="#exe2">Exercice 2</a>
+        <a href="#exe3">Exercice 3</a>
+        <a href="#exe4">Exercice 4</a>
+        <a href="#exe5">Exercice 5</a>
+    </div>
 
     <script>
         // Exercice 1
@@ -119,6 +137,16 @@
                 document.body.className = "Clair";
             } else {
                 document.body.className = "Sombre"
+            }
+        }
+
+        // Exercice 5
+        function afficherOuCacherMenu() {
+            var menuItem = document.getElementById("menu");
+            if (menuItem.style.display === "block") {
+                menuItem.style.display = "none";
+            } else {
+                menuItem.style.display = "block";
             }
         }
     </script>
